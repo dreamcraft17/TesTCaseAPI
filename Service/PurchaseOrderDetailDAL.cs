@@ -46,12 +46,12 @@ namespace WebApi.Service
         {
             try
             {
-                cmd = new SqlCommand("pod_insert", con);
+                cmd = new SqlCommand("pd3_create", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@code", pod.PurchaseOrderID);
-                cmd.Parameters.AddWithValue("@purchasedate", pod.ProductID);
-                cmd.Parameters.AddWithValue("@poID", pod.Quantity);
-                cmd.Parameters.AddWithValue("@remarks", pod.UnitPrice);
+                cmd.Parameters.AddWithValue("@purchaseorderid", pod.PurchaseOrderID);
+                cmd.Parameters.AddWithValue("@productid", pod.ProductID);
+                cmd.Parameters.AddWithValue("@quantity", pod.Quantity);
+                cmd.Parameters.AddWithValue("@unitprice", pod.UnitPrice);
                 con.Open();
 
                 int r = cmd.ExecuteNonQuery();
@@ -123,6 +123,44 @@ namespace WebApi.Service
             }
 
 
+        }
+
+        public List<Guid> GetPurchaseOrderIDs()
+        {
+            List<Guid> poIDs = new List<Guid>();
+
+            using (SqlCommand cmd = new SqlCommand("SELECT ID FROM PurchaseOrder", con))
+            {
+                con.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        poIDs.Add(reader.GetGuid(0));
+                    }
+                }
+            }
+
+            return poIDs;
+        }
+
+        public List<Guid> GetProductIDs()
+        {
+            List<Guid> productIDs = new List<Guid>();
+
+            using (SqlCommand cmd = new SqlCommand("SELECT ID FROM Product", con))
+            {
+                con.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        productIDs.Add(reader.GetGuid(0));
+                    }
+                }
+            }
+
+            return productIDs;
         }
     }
 }

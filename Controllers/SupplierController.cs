@@ -6,6 +6,7 @@ using WebApi.Service;
 
 namespace WebApi.Controllers
 {
+    [RoutePrefix("api/Supplier")]
     public class SupplierController : ApiController
     {
         SupplierDAL supplierDAL = new SupplierDAL();

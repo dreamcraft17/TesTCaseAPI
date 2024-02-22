@@ -6,6 +6,7 @@ using WebApi.Service;
 
 namespace WebApi.Controllers
 {
+    [RoutePrefix("api/Product")]
     public class ProductController : ApiController
     {
         ProductDAL productDAL = new ProductDAL();

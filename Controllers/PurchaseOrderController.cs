@@ -7,8 +7,10 @@ using WebApi.Service;
 
 namespace WebApi.Controllers
 {
+    [RoutePrefix("api/PurchaseOrder")]
     public class PurchaseOrderController : ApiController
     {
+
         // GET: PurchaseOrder
         PurchaseOrderDAL purcahseorderDAL = new PurchaseOrderDAL();
         SupplierDAL supplierDAL = new SupplierDAL();

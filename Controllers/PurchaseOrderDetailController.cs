@@ -9,6 +9,7 @@ using WebApi.Service;
 
 namespace WebApi.Controllers
 {
+    [System.Web.Http.RoutePrefix("api/PurchaseOrderDetail")]
     public class PurchaseOrderDetailController : ApiController
     {
         // GET: PurchaseOrderDetail

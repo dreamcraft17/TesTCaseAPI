@@ -19,7 +19,7 @@ namespace WebApi.Models
         [Display(Name = "Purchase Date")]
         public DateTime PurchaseDate { get; set; }
 
-        [Required(ErrorMessage = "Supplier ID is required")]
+        //[Required(ErrorMessage = "Supplier ID is required")]
         [Display(Name = "Supplier ID")]
         public Guid SupplierID { get; set; }
 

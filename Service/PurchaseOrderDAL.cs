@@ -45,11 +45,11 @@ namespace WebApi.Service
         {
             try
             {
-                cmd = new SqlCommand("po_insert", con);
+                cmd = new SqlCommand("po3_create", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@code", po.Code);
                 cmd.Parameters.AddWithValue("@purchasedate", po.PurchaseDate);
-                cmd.Parameters.AddWithValue("@poID", po.SupplierID);
+                cmd.Parameters.AddWithValue("@supplierid", po.SupplierID);
                 cmd.Parameters.AddWithValue("@remarks", po.Remarks);
                 con.Open();
 
@@ -123,5 +123,27 @@ namespace WebApi.Service
 
 
         }
+
+        public List<Guid> GetSupplierIDs()
+        {
+            List<Guid> supplierIDs = new List<Guid>();
+
+            using (SqlCommand cmd = new SqlCommand("SELECT ID FROM Supplier", con))
+            {
+                con.Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        supplierIDs.Add(reader.GetGuid(0));
+                    }
+                }
+            }
+
+            return supplierIDs;
+        }
+
+
+
     }
 }
